@@ -1,0 +1,23 @@
+<!-- Loop over each object in the projects array -->
+{{#each blogs as |blog| }}
+<div class="row mb-4 blog">
+  <div class="col-md-5">
+    <h2>
+
+      <a href="/blog/{{blog.id}}">{{blog.title}}</a>
+    </h2>
+    <p>
+      <span for="img" aria-label="money">💲</span>
+      <!-- Pass needed_funding value to the helper function -->
+      <span class="dollar-amount">{{blog.content}}</span>
+      needed!
+    </p>
+    <p>Created by {{blog.user_name}} on {{blog.date_created}}</p>
+  </div>
+  <div class="col-md-7">
+    <p>
+      {{blog.comment}}
+    </p>
+  </div>
+</div>
+{{/each}}
