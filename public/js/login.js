@@ -22,7 +22,6 @@ const loginFormHandler = async (event) => {
       }
     }
   };
-  
 
   
   document

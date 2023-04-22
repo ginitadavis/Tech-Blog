@@ -6,7 +6,11 @@ router.post('/', async (req, res) => {
     const userData = await User.create(req.body);
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.id = userData.id;
+      req.session.firstName = userData.firstName;
+      req.session.lastName = userData.lastName;
+      req.session.user_name = userData.user_name;
+
       req.session.logged_in = true;
 
       res.status(200).json(userData);
@@ -18,15 +22,16 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
+    console.log('req.body ' , req.body );
+    const userData = await User.findOne({ where: { email_address: req.body.email } });
 
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect username or password, please try again' });
       return;
     }
-
+    console.log("Found user");
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
@@ -35,11 +40,13 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-
+    console.log("Valid password");
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.id = userData.id;
+      req.session.firstName = userData.firstName;
+      req.session.lastName = userData.lastName;
+      req.session.user_name = userData.user_name;
       req.session.logged_in = true;
-      
       res.json({ user: userData, message: 'You are now logged in!' });
     });
 
@@ -48,14 +55,18 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/logout', (req, res) => {
+router.post('/logout', async(req, res) => {
+  // if (req.session.logged_in) {
+  //   req.session.destroy(() => {
+  //     res.status(204).end();
+  //   });
+  // } else {
+  //   res.status(404).end();
+  // }
   if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
+    await req.session.destroy();
   }
+  res.redirect('/homepage')
 });
 
 module.exports = router;

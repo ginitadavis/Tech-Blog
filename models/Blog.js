@@ -17,15 +17,8 @@ Blog.init(
         content: {
             type: DataTypes.TEXT,
         },
-        user_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         date_created: {
             type: DataTypes.DATEONLY,
-        },
-        comment: {
-            type: DataTypes.TEXT,
         },
     },
     {

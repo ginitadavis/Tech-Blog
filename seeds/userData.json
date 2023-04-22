@@ -1,18 +1,10 @@
 [
     {
-      "name": "Sal",
-      "email": "sal@hotmail.com",
-      "password": "password12345"
-    },
-    {
-      "name": "Lernantino",
-      "email": "lernantino@gmail.com",
-      "password": "password12345"
-    },
-    {
-      "name": "Amiko",
-      "email": "amiko2k20@aol.com",
-      "password": "password12345"
+      "firstName" : "Gina",
+      "lastName" : "Davis",
+      "user_name" : "ginis",
+      "email_address" : "gina.vera.davis@gmail.com",
+      "userPassword" : "password123"
     }
   ]
   

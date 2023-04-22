@@ -2,14 +2,14 @@ const router = require('express').Router();
 const { Blog, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/homepage', async (req, res) => {
   try {
     // Get all blogs and JOIN with user data
     const blogData = await Blog.findAll({
       include: [
         {
           model: User,
-          attributes: ['name'],
+          attributes: ['user_name'],
         },
       ],
     });
@@ -33,7 +33,7 @@ router.get('/blog/:id', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['name'],
+          attributes: ['user_name'],
         },
       ],
     });
@@ -52,13 +52,22 @@ router.get('/blog/:id', async (req, res) => {
 // Use withAuth middleware to prevent access to route
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Blog }],
+
+    const userBlog = await Blog.findAll({
+      where: {
+        user_id: req.session.user_id
+      },
+      raw: true
     });
 
-    const user = userData.get({ plain: true });
+
+    // Find the logged in user based on the session ID
+    // const userData = await User.findByPk(req.session.user_id, {
+    //   attributes: { exclude: ['password'] },
+    //   include: [{ model: Blog }],
+    // });
+
+    // const user = userData.get({ plain: true });
 
     res.render('dashboard', {
       ...user,
@@ -71,12 +80,15 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
+  try{
+    if (req.session.logged_in) {
+      res.redirect('/dashboard');
+      return;
+    }
+    res.render('login');
+  }catch(err){
+    res.status(500).json(err);
   }
-
-  res.render('login');
 });
 
 router.get('/logout', (req, res) => {
@@ -86,17 +98,27 @@ router.get('/logout', (req, res) => {
     return;
   }
 
-  res.render('logout');
+  res.render('homepage');
 });
 
-router.get('/signup', (req, res) => {
+router.get('/register', async(req, res) => {
   // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
+  try{
+    if (req.session.logged_in) {
+      res.redirect('/dashboard');
+      return;
+    } else {
+      const userData = await User.create(req.body);
+  
+      req.session.save(() => {
+        req.session.user_id = userData.userID;//check if I should have userID here
+        req.session.logged_in = true;
+        res.redirect('/homepage');
+  
+      });}
+  }catch(err){
+    res.status(500).json(err);
   }
-
-  res.render('signup');
 });
 
 module.exports = router;

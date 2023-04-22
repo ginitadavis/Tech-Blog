@@ -1,0 +1,47 @@
+.form {
+    position: absolute;
+    width: 30%;
+    height: 350px;
+    left: 30vw;
+    top: 10vw;
+    background-color: deepskyblue;
+    border-radius: 2%;
+}
+
+.container {
+    width: 90%;
+    height: 90%;
+}
+
+h2 {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 100%;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-left: 5%;
+}
+
+label {
+    margin-left: 5%;
+}
+
+.login {
+    margin-top: 5%;
+    padding: 6px;
+    width: 100%;
+    display: inline-block;
+    margin-left: 5%;
+}
+
+.login:hover {
+    background-color: rgb(62, 146, 241);
+}
