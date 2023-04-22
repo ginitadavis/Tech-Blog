@@ -1,1 +1,28 @@
-<h1>This is the homepage handlebar</h1>
+<link rel="stylesheet" href="css/homepage.css">
+
+<h1>Homepage</h1>
+
+<div class="posts">
+{{#each blogs as |blog|}}
+
+
+<div class="container">
+    <div class="titleHeader">
+        <div class="title">{{blog.title}}</div>
+        <div class="user">Posted by {{blog.user.user_name}} on {{blog.date_created}}</div>
+    </div>
+    <div class="content">
+        {{blog.content}}
+    </div>
+    <a class="postLink" href="/dashboard">Click Here!</a>
+</div>
+{{!-- <a href="/dashboard"></a> --}}
+{{/each}}
+</div>
+{{!-- 
+blog.id
+blog.title
+blog.content
+blog.date_created
+blog.user or blog.user.user_name 
+--}}

@@ -17,11 +17,16 @@ router.get('/homepage', async (req, res) => {
     // Serialize data so the template can read it
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
 
+    console.log('COOOOOOOMEEEEEEES HERE');
+    console.log(blogs);
+
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       blogs, 
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
     });
+    console.log(blogs.title);
+    console.log(blogs.user);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -60,6 +65,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
       raw: true
     });
 
+    const user = await User.findByPk(req.session.user_id, {raw: true});
+    let userName = user.user_name;
 
     // Find the logged in user based on the session ID
     // const userData = await User.findByPk(req.session.user_id, {
@@ -69,8 +76,13 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     // const user = userData.get({ plain: true });
 
+    console.log(userBlog);
+    console.log(userName);
+    console.log(logged_in);
+
     res.render('dashboard', {
-      ...user,
+      userBlog,
+      userName,
       logged_in: true
     });
   } catch (err) {
@@ -85,30 +97,23 @@ router.get('/login', (req, res) => {
       res.redirect('/dashboard');
       return;
     }
-    res.render('login');
+    res.render('login', { logged_in: req.session.logged_in });
   }catch(err){
     res.status(500).json(err);
   }
-});
-
-router.get('/logout', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
-  }
-
-  res.render('homepage');
 });
 
 router.get('/register', async(req, res) => {
   // If the user is already logged in, redirect the request to another route
   try{
     if (req.session.logged_in) {
-      res.redirect('/dashboard');
+      res.redirect('/homepage');
       return;
     } else {
       const userData = await User.create(req.body);
+      console.log("req.session");
+
+      console.log(req.session);
   
       req.session.save(() => {
         req.session.user_id = userData.userID;//check if I should have userID here

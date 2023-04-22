@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     console.log('req.body ' , req.body );
-    const userData = await User.findOne({ where: { email_address: req.body.email } });
+    const userData = await User.findOne({ where: { email_address: req.body.email_address } });
 
     if (!userData) {
       res
@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
       return;
     }
     console.log("Found user");
-    const validPassword = await userData.checkPassword(req.body.password);
+    const validPassword = await userData.checkPassword(req.body.userPassword);
 
     if (!validPassword) {
       res
@@ -56,17 +56,25 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', async(req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+
+  // console.log('logged in? ', req.session.logged_in)
   // if (req.session.logged_in) {
-  //   req.session.destroy(() => {
-  //     res.status(204).end();
+  //   await req.session.destroy(() => {
+  //     res.session(204).end();
   //   });
   // } else {
   //   res.status(404).end();
   // }
-  if (req.session.logged_in) {
-    await req.session.destroy();
-  }
-  res.redirect('/homepage')
+
+  // console.log('logged in? ', req.session.logged_in)
+  // res.redirect('/homepage');
 });
 
 module.exports = router;

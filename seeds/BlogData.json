@@ -5,5 +5,12 @@
         "user_name": "ginis",
         "date_created": "2023-04-07",
         "user_id": 1
+    },
+    {
+        "title": "MVC Test",
+        "content": "This is another post test for a blog",
+        "user_name": "tanya",
+        "date_created": "2023-04-22",
+        "user_id": 2
     }
 ]

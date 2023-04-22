@@ -1,32 +1,31 @@
+// const { response } = require("express");
+
 const loginFormHandler = async (event) => {
-    event.preventDefault();
-  
-    // Collect values from the login form
-    const email = document.querySelector('#email-login').value.trim();
-    const password = document.querySelector('#password-login').value.trim();
-  
-    if (email && password) {
-      // Send a POST request to the API endpoint
-      const response = await fetch('/api/users/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        console.log(email, password);
-        // If successful, redirect the browser to the profile page
-        document.location.replace('/dashboard');
-      } else {
-        alert(response.statusText);
-      }
+  event.preventDefault();
+
+  // Collect values from the login form
+  const email_address = document.querySelector('#email-login').value.trim();
+  const userPassword = document.querySelector('#password-login').value.trim();
+
+  if (email_address && userPassword) {
+    // Send a POST request to the API endpoint
+    const response = await fetch('/api/users/login', {
+      method: 'POST',
+      body: JSON.stringify({ email_address, userPassword }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      document.location.replace('/dashboard');
+    } else {
+      console.log(response.statusText);
     }
-  };
+  }
+};
 
-  
-  document
-    .querySelector('.login-form')
-    .addEventListener('submit', loginFormHandler);
-  
 
-  
+document
+  .querySelector('.login-form')
+  .addEventListener('submit', loginFormHandler);
+
+

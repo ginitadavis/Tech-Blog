@@ -5,6 +5,13 @@
       "user_name" : "ginis",
       "email_address" : "gina.vera.davis@gmail.com",
       "userPassword" : "password123"
+    },
+    {
+      "firstName" : "Tanya",
+      "lastName" : "Yegros",
+      "user_name" : "Tanya",
+      "email_address" : "tanya@gmail.com",
+      "userPassword" : "password123"
     }
   ]
   

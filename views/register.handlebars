@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="css/register.css">
+{{!-- <link rel="stylesheet" href="css/register.css"> --}}
 
-<div class="loginSection">
+{{!-- <div class="loginSection">
     <h1>
         Register a new user
     </h1>
@@ -16,7 +16,7 @@
             <label for="lastName">Last Name:</label>
             <input type="text" id="lastName" name="name">
         </div>
-        
+
         {{!-- DOB --}}
         <div class="form-group">
             <label for="user_name">Date of birth:</label>
@@ -37,7 +37,7 @@
 
         {{!-- Add User button --}}
         <div class="form-group text-center">
-                <button class="btn btn-primary" type="submit" id="btnAddUser">Add User</button>
+            <button class="btn btn-primary" type="submit" id="btnAddUser">Add User</button>
         </div>
 
         {{!-- Already a user --}}
@@ -48,6 +48,37 @@
     </form>
 
 
+</div> --}}
+
+<link rel="stylesheet" href="css/register.css">
+
+<div class="row">
+    <div class="col-md-6">
+
+
+        <form class="form login-form">
+
+            <div class="container">
+                <h2>Register a new user</h2>
+                <label for="firstName"><b>First Name:</b></label>
+                <input class="form-input" type="text" placeholder="First Name" id="firstName" required>
+
+                <label for="lastName"><b>Last Name:</b></label>
+                <input class="form-input" type="text" placeholder="Last Name" id="lastName" required>
+
+                <label for="user_name"><b>Username:</b></label>
+                <input class="form-input" type="text" placeholder="Username" id="user_name" required>
+
+                <label for="email_address"><b>Email Address:</b></label>
+                <input class="form-input" type="text" placeholder="Email Address" id="email_address" required>
+
+                <label for="userPassword"><b>Password</b></label>
+                <input class="form-input" type="password" placeholder="Password" id="userPassword" required>
+
+                <button class="submit" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
 
-<script src="js/register.js"></script>
+<script src="./js/register.js"></script>
