@@ -1,17 +1,25 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-router.post('/', async (req, res) => {
+router.post('/homepage', withAuth ,async (req, res) => {
   try {
     const userData = await User.create(req.body);
+
+    console.log('*****************')
+    console.log('*****************',req.session,'*****************')
+    
 
     req.session.save(() => {
       req.session.id = userData.id;
       req.session.firstName = userData.firstName;
       req.session.lastName = userData.lastName;
       req.session.user_name = userData.user_name;
+      req.session.email_address = userData.email_address;
 
       req.session.logged_in = true;
+
+      console.log('*****************',req.session,'*****************2222222222')
 
       res.status(200).json(userData);
     });
@@ -64,17 +72,6 @@ router.post('/logout', async(req, res) => {
     res.status(404).end();
   }
 
-  // console.log('logged in? ', req.session.logged_in)
-  // if (req.session.logged_in) {
-  //   await req.session.destroy(() => {
-  //     res.session(204).end();
-  //   });
-  // } else {
-  //   res.status(404).end();
-  // }
-
-  // console.log('logged in? ', req.session.logged_in)
-  // res.redirect('/homepage');
 });
 
 module.exports = router;
