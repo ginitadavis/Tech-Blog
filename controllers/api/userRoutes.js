@@ -30,7 +30,7 @@ router.post('/homepage', withAuth ,async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    console.log('req.body ' , req.body );
+
     const userData = await User.findOne({ where: { email_address: req.body.email_address } });
 
     if (!userData) {

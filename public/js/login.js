@@ -16,7 +16,7 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/dashboard');
     } else {
       console.log(response.statusText);
     }
@@ -42,7 +42,7 @@ console.log(firstName,lastName, user_name, email_address, userPassword);
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/dashboard');
     } else {
       alert(response.statusText);
     }
