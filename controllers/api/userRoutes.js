@@ -11,7 +11,7 @@ router.post('/homepage', withAuth ,async (req, res) => {
     
 
     req.session.save(() => {
-      req.session.id = userData.id;
+      req.session.user_id = userData.id;
       req.session.firstName = userData.firstName;
       req.session.lastName = userData.lastName;
       req.session.user_name = userData.user_name;
@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
     }
     console.log("Valid password");
     req.session.save(() => {
-      req.session.id = userData.id;
+      req.session.user_id = userData.id;
       req.session.firstName = userData.firstName;
       req.session.lastName = userData.lastName;
       req.session.user_name = userData.user_name;
