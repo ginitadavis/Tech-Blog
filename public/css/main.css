@@ -4,7 +4,8 @@
 }
 
 body {
-  background-color: lavender;
+  background-color: rgb(202, 248, 248);
+  ;
 }
 
 .button-link {
@@ -22,7 +23,9 @@ body {
 }
 
 header {
-  background-color: #333333;
+  /* background-color: #333333; */
+  background-color: #4f6a56;
+
   color: white;
   margin: 0;
   padding: 0;
@@ -54,28 +57,28 @@ a {
   font-weight: bold;
 }
 
-.loginText{
+.loginText {
   margin: 20px;
   color: white;
   font-size: medium;
   font-weight: bold;
 }
 
-a:hover, .button-link:hover {
-  color: rgb(62, 146, 241);
+a:hover,
+.button-link:hover {
+  color: rgb(115, 224, 224);
   text-decoration: underline;
 }
 
-@media (max-width: 800px){
+@media (max-width: 800px) {
   a {
     flex-direction: column;
   }
 
-  nav, ul {
+  nav,
+  ul {
     display: flex;
     flex-direction: column;
   }
 
 }
-
-

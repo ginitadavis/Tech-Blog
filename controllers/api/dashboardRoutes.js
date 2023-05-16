@@ -1,29 +1,31 @@
-const router = require('express').Router();
-const { User, Blog } = require('../../models');
-const withAuth = require('../../utils/auth');
+// const router = require('express').Router();
+// const { User, Blog } = require('../../models');
+// const withAuth = require('../../utils/auth');
 
-// Use withAuth middleware to prevent access to route
-router.get('/', withAuth, async (req, res) => {
-    try{
-      const userData = await User.findByPk(req.session.user_id, {
-        attributes : {exclude: ['userPassword']},
-        include: [{ model: Blog}],
-      });
+// // Use withAuth middleware to prevent access to route
+// router.get('/', withAuth, async (req, res) => {
+//     try{
 
-      const user = userData.get({ plain: true });
+//         res.redirect('/api/dashboard');
+//     //   const userData = await User.findByPk(req.session.user_id, {
+//     //     attributes : {exclude: ['userPassword']},
+//     //     include: [{ model: Blog}],
+//     //   });
 
-      console.log('-----------------------------------');
-      console.log(user);
-      res.render('dashboard', {
-        ...user,
-        logged_in: true
-      });
+//     //   const user = userData.get({ plain: true });
 
-      console.log(user);
+//     //   console.log('-----------------------------------');
+//     //   console.log(user);
+//     //   res.render('dashboard', {
+//     //     ...user,
+//     //     logged_in: true
+//     //   });
 
-    }catch(err){
-      res.status(500).json(err);
-    }
-  });
+//     //   console.log(user);
 
-  module.exports = router;
+//     }catch(err){
+//       res.status(500).json(err);
+//     }
+//   });
+
+//   module.exports = router;

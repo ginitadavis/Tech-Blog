@@ -5,24 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trip Planner</title>
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
 
   <header>
-      <nav>
-        <h1 class="navigation">The Tech Blog</h1>
-        <ul>
-          <li><a href="/homepage">Home</a></li>
-          {{#if logged_in}}
-          <li><a href="/dashboard">Dashboard</a></li>
-          <button class="button-link" id="logout">Logout</button>
-          {{else}}
-          <li><a href="/login">Login / Sign Up</a></li>
-          {{/if}}
-        </ul>
-      </nav>
+    <nav>
+      <h1 class="navigation">The Tech Blog</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        {{#if logged_in}}
+        <li><a href="/dashboard">Dashboard</a></li>
+        <button class="button-link" id="logout">Logout</button>
+        {{else}}
+        <li><a href="/login">Login / Sign Up</a></li>
+        {{/if}}
+      </ul>
+    </nav>
   </header>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <main>

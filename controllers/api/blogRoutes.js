@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Blog } = require('../../models');
 const withAuth = require('../../utils/auth');
-
+//localhost:3001/api/blogs
 router.post('/', withAuth, async (req, res) => {
   try {
     const newBlog = await Blog.create({

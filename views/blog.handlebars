@@ -1,1 +1,25 @@
-<h1>This is the blog handlebar</h1>
+<link rel="stylesheet" href="/css/blog.css">
+
+<div class="card">
+    <input id="id" type="hidden" value="{{id}}" />
+    <div class="card2">
+        <div class="titleHeader">Title: {{title}}</div>
+        <div class="date"> Created: {{date_created}}</div>
+    </div>
+    <br class="line">
+    <div class="contentText"> {{content}}</div>
+    {{!-- open a modal message --}}
+    <div class="modal">
+        <div class="modal-content">
+
+            <textarea id="newComment" cols="30" rows="10" placeholder="Add new comment"></textarea>
+            <div class="buttons">
+                <button id="saveBtn">Save</button>
+                <button id="closeBtn">Close</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script src="/js/comment.js"></script>

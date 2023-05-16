@@ -1,0 +1,63 @@
+.card {
+    background-color: rgb(115, 224, 224);
+    border-radius: 5px;
+    margin: 5%;
+}
+
+.card2 {
+    display: flex;
+    margin: 1%;
+    justify-content: space-between;
+    font-size: x-large;
+}
+
+.contentText {
+    margin: 1%;
+    margin-bottom: 3%;
+    font-size: large;
+}
+
+.titleHeader,
+.date {
+    margin-top: 1%;
+}
+
+br.line {
+    display: block;
+    content: "";
+    border-top: 1px solid black;
+    margin: 10px 0;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.buttons {
+    align-items: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#saveBtn {
+    margin-left: 35%;
+}
+
+#closeBtn,
+#saveBtn {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 6px;
+    width: 10%;
+    display: inline-block;
+    border-radius: 5%;
+}
+
+#closeBtn:hover,
+#saveBtn:hover {
+    background-color: rgb(115, 224, 224);
+}

@@ -1,1 +1,50 @@
-<h1>This is the dashboard handlebar</h1>
+<link rel="stylesheet" href="css/dashboard.css">
+<h1> Hello, {{posts.firstName}} {{posts.lastName}}! Welcome to your dashboard.</h1>
+
+<button class="newPostBtn"> + New Post</button>
+
+<div class="posts">
+    {{#each posts.blogs as |post|}}
+
+    <div class="card">
+        <div class="card2">
+            <div class="titleHeader">{{post.title}}</div>
+            <div class="date"> {{post.date_created}}</div>
+        </div>
+        <button class="openBtn">Edit</button>
+        {{!-- open a modal message --}}
+        <div class="modal">
+            <div class="modal-content">
+                {{!-- <h2>{{post.title}}</h2> --}}
+                <textarea name="" id="" cols="30" rows="10">{{post.title}}</textarea>
+                <textarea name="" id="" cols="30" rows="10">{{post.content}}</textarea>
+                {{!-- <p>{{post.content}}</p> --}}
+                <button class="closeBtn">Close</button>
+                <button class="saveBtn">Save</button>
+            </div>
+        </div>
+
+    </div>
+
+    {{/each}}
+</div>
+
+
+
+{{!-- <button id="openBtn">Open Modal</button> --}}
+
+{{!--
+Before clicking
+Blog.title
+Blog.date_created
+
+After clicking
+Blog.title
+Blog.content
+user.user_name
+Blog.date_created
+comment
+--}}
+
+
+<script src="/js/dashboard.js"></script>
